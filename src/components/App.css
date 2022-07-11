@@ -1,0 +1,107 @@
+body {
+  background-color: #6B4E71;
+}
+
+.flex-container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+h1 {
+  color: #C2B2B4;
+  font-size: 5em;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  background-color:#C2B2B4;
+  width: 30vw;
+  height: 60vh;
+  margin-top: 2%;
+  padding: 3%;
+  overflow-y: scroll;
+  text-align: left;
+  border-radius: 5%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1vw;
+  border-radius: 50%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #8f767a;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+
+.list-items{
+  font-size: 1.8em;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: row;
+  color: #3A4454;
+}
+
+.item-input{
+  display: flex;
+  flex-direction: row;
+}
+
+input[type=text]{
+  width: 70%;
+  line-height: 3em;
+  border-radius: 10% 0% 0% 10%;
+}
+
+input[type=checkbox]{
+  width: 25px;
+  border-radius: 10%;
+  margin-right: 5%;
+}
+input[type=checkbox]:checked{
+  width: 25px;
+  border-radius: 10%;
+  margin-right: 5%;
+  background-color: #6B4E71;
+  
+}
+
+
+input[type=submit]{
+  line-height: 1.8em;
+  background-color: #6B4E71;
+  color:#f3ebec;
+  font-size : 1.2em;
+  border-radius: 0% 10% 10% 0%;
+  width: 25%;
+}
+
+.delete-item{
+  margin-left: auto;
+  align-self: center;
+  height: 60%;
+  width: fit-content;
+  background-color: #6B4E71;
+  border-radius: 10%;
+
+} 
+
+::placeholder{
+  font-size: 1.8em;
+  height: 1.8em;
+  padding-left: 2%;
+}
+
+fieldset{
+  margin-top: 5%;
+}
