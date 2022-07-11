@@ -30,7 +30,6 @@ h1 {
 /* width */
 ::-webkit-scrollbar {
   width: 1vw;
-  border-radius: 50%;
 }
 
 /* Track */
@@ -67,15 +66,11 @@ input[type=checkbox]{
   width: 25px;
   border-radius: 10%;
   margin-right: 5%;
+  accent-color: #6B4E71;
 }
-input[type=checkbox]:checked{
-  width: 25px;
-  border-radius: 10%;
-  margin-right: 5%;
-  background-color: #6B4E71;
-  
+input[type=checkbox]:checked ~ input{
+    text-decoration: line-through;
 }
-
 
 input[type=submit]{
   line-height: 1.8em;
