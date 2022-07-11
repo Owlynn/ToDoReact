@@ -4,20 +4,22 @@ import ItemInput from "../ItemInput/ItemInput";
 
 
 class ListContainer extends React.Component{
+    constructor(props){
+      super(props);
+
+      this.state = { 
+        itemList : [ <ListItem/>, <ListItem/>, <ListItem/>, <ListItem/>, <ListItem/>, <ListItem/>]
+      }
+    }
     render(){
         return (
 
             <div className='list-container'>
               <ItemInput/>
-           
 
             <fieldset>
-              
-              <ListItem/>
-              <ListItem/>
-              <ListItem/>
-              <ListItem/>
-              <ListItem/>
+                          
+              {this.state.itemList}
              
             </fieldset>
         </div>
