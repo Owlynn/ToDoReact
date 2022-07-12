@@ -11,24 +11,28 @@ class ListContainer extends React.Component{
 
       this.getUserInput = this.getUserInput.bind(this);
       this.addTask = this.addTask.bind(this);
+      this.removeTask = this.addTask.bind(this);
     }
 
     getUserInput(){
       let userInput = document.getElementById('text-input').value;
-      console.log(userInput)
+      // console.log(userInput)
       return userInput;
     }
 
+    
     addTask(){
       let userInput = this.getUserInput();
-        this.setState({
-      })
-      this.state.itemArray.push(<ListItem userInput={userInput}/>)
+      this.state.itemArray.push(<ListItem userInput={userInput} key = {userInput}/>)
+      this.setState({})
+    }
+    
+    removeTask(){
+       console.log("lol")
     }
 
     render(){
         return (
-
             <div className='list-container'>
                <div>
                   <div className = "item-input">

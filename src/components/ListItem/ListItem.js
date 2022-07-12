@@ -11,14 +11,21 @@ import React from "react";
 // trouver le niveau (dans l'arborescence) auquel est stocké la donnée
 
 class ListItem extends React.Component {
+    constructor(props){
+        super(props);
+        this.target = this.target.bind(this);
+    }
 
+    target(event){
+        event.target.parentNode.remove()
+    }
     render(){
         return (
-            <div className = "list-items">
-                <input type="checkbox" id={String(this.props.userInput)} name="item" />
+            <div className = "list-items" id={String(this.props.userInput)} key={String(this.props.userInput)}>
+                <input type="checkbox" name="item" />
                 <label> {this.props.userInput}</label>
-                <button className='delete-item'> X </button>
-              </div>
+                <button className='delete-item' id={`delete-${String(this.props.userInput)}`} onClick = {this.target} >X</button>
+            </div>
         )
     }
 }
