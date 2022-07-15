@@ -1,4 +1,5 @@
 import React from "react";
+import "./ListItem.css"
 
 // un composant, par défaut, peut prendre des props.
 // pour qu'il en ait, il faut lui envoyer

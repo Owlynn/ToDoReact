@@ -1,0 +1,57 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    background-color:#C2B2B4;
+    width: 30vw;
+    height: 60vh;
+    margin-top: 2%;
+    padding: 3%;
+    overflow-y: scroll;
+    text-align: left;
+    border-radius: 5%;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 1vw;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #8f767a;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  .item-input{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  input[type=text]{
+    width: 70%;
+    line-height: 3em;
+    border-radius: 10% 0% 0% 10%;
+  }
+
+  .add-task{
+    line-height: 1.8em;
+    background-color: #6B4E71;
+    color:#f3ebec;
+    font-size : 1.2em;
+    border-radius: 0% 10% 10% 0%;
+    width: 25%;
+  }
+
+  ::placeholder{
+    font-size: 1.8em;
+    height: 1.8em;
+    padding-left: 2%;
+  }
+
+  fieldset{
+    margin-top: 5%;
+  }

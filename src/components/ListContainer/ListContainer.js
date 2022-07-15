@@ -1,4 +1,5 @@
 import React from "react";
+import './ListContainer.css'
 import ListItem from "../ListItem/ListItem";
 
 class ListContainer extends React.Component{
@@ -42,6 +43,10 @@ class ListContainer extends React.Component{
       this.setState({
         itemArray: newArray
       })
+    }
+
+    checkTask(){
+      
     }
 
  
