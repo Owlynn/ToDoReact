@@ -13,18 +13,20 @@ import React from "react";
 class ListItem extends React.Component {
     constructor(props){
         super(props);
-        this.target = this.target.bind(this);
+        // this.log = this.log.bind(this);
     }
 
-    target(event){
-        event.target.parentNode.remove()
-    }
+    // remove(event){
+    //     console.log(event.target.parentNode);
+    //     event.target.parentNode.remove()
+    // }
+
     render(){
         return (
-            <div className = "list-items" id={String(this.props.userInput)} key={String(this.props.userInput)}>
+            <div className = "list-items" id={String(this.props.userInput)} key={this.props.userInput}>
                 <input type="checkbox" name="item" />
                 <label> {this.props.userInput}</label>
-                <button className='delete-item' id={`delete-${String(this.props.userInput)}`} onClick = {this.target} >X</button>
+                <button className='delete-item' onClick = {this.props.removeTask} buttonkey ={this.props.userInput}>X</button>
             </div>
         )
     }

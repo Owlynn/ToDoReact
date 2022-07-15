@@ -11,7 +11,7 @@ class ListContainer extends React.Component{
 
       this.getUserInput = this.getUserInput.bind(this);
       this.addTask = this.addTask.bind(this);
-      this.removeTask = this.addTask.bind(this);
+      this.removeTask = this.removeTask.bind(this);
     }
 
     getUserInput(){
@@ -20,17 +20,26 @@ class ListContainer extends React.Component{
       return userInput;
     }
 
+    removeTask(event){
+      let buttonkey = event.target.getAttribute('buttonkey');
+      let array = this.state.itemArray
+      let newArray = array.filter(element => {
+        return element.key !== buttonkey
+      })
+
+      this.setState({
+        itemArray: newArray
+      })
+    }
+
     
     addTask(){
       let userInput = this.getUserInput();
-      this.state.itemArray.push(<ListItem userInput={userInput} key = {userInput}/>)
+      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask}/>)
+      console.log(this.state.itemArray)
       this.setState({})
     }
     
-    removeTask(){
-       console.log("lol")
-    }
-
     render(){
         return (
             <div className='list-container'>
