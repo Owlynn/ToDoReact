@@ -20,6 +20,18 @@ class ListContainer extends React.Component{
       return userInput;
     }
 
+    
+    addTask(){
+      let userInput = this.getUserInput();
+      if (!userInput){
+        return alert('the input field is empty')
+      }
+      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask}/>)
+      // console.log(this.state.itemArray)
+      this.setState({})
+      document.getElementById('text-input').value = " ";
+    }
+    
     removeTask(event){
       let buttonkey = event.target.getAttribute('buttonkey');
       let array = this.state.itemArray
@@ -32,14 +44,7 @@ class ListContainer extends React.Component{
       })
     }
 
-    
-    addTask(){
-      let userInput = this.getUserInput();
-      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask}/>)
-      console.log(this.state.itemArray)
-      this.setState({})
-    }
-    
+ 
     render(){
         return (
             <div className='list-container'>
