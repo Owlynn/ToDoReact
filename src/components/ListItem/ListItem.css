@@ -13,10 +13,14 @@
     accent-color: #6B4E71;
   }
 
-  input[type=checkbox]:checked + label{
+ input[type=checkbox]:checked + label{
       text-decoration: line-through;
   }
   
+  /* .line-through{
+      text-decoration: line-through;
+  }
+   */
   .delete-item{
     margin-left: auto;
     align-self: center;

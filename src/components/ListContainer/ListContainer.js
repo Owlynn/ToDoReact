@@ -8,11 +8,13 @@ class ListContainer extends React.Component{
 
       this.state = { 
         itemArray : [],
+        isChecked : false,
       }
 
       this.getUserInput = this.getUserInput.bind(this);
       this.addTask = this.addTask.bind(this);
       this.removeTask = this.removeTask.bind(this);
+      this.checkTask = this.checkTask.bind(this);
     }
 
     getUserInput(){
@@ -27,7 +29,7 @@ class ListContainer extends React.Component{
       if (!userInput){
         return alert('the input field is empty')
       }
-      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask}/>)
+      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask} onChange={this.checkTask} isChecked={this.state.isChecked}/>)
       // console.log(this.state.itemArray)
       this.setState({})
       document.getElementById('text-input').value = " ";
@@ -37,6 +39,7 @@ class ListContainer extends React.Component{
       let buttonkey = event.target.getAttribute('buttonkey');
       let array = this.state.itemArray
       let newArray = array.filter(element => {
+        console.log('index element ' + array.indexOf(element))
         return element.key !== buttonkey
       })
 
@@ -46,9 +49,10 @@ class ListContainer extends React.Component{
     }
 
     checkTask(){
-      
+      this.setState({
+        isChecked:true
+      })
     }
-
  
     render(){
         return (
