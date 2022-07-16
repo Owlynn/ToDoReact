@@ -16,7 +16,7 @@ class ListItem extends React.Component {
     render(){
         return (
             <div className = "list-items" id={String(this.props.userInput)} key={this.props.userInput}>
-                <input type="checkbox" name="item" defaultChecked={this.props.isChecked} onChange= {this.props.onChange} />
+                <input type="checkbox" name="item" defaultChecked={false} onChange= {this.props.onChange} />
                 <label htmlFor = {String(this.props.userInput)}> {this.props.userInput}</label>
                 <button className='delete-item' onClick = {this.props.removeTask} buttonkey ={this.props.userInput}>X</button>
             </div>

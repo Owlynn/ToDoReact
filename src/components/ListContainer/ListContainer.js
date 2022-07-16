@@ -15,6 +15,7 @@ class ListContainer extends React.Component{
       this.addTask = this.addTask.bind(this);
       this.removeTask = this.removeTask.bind(this);
       this.checkTask = this.checkTask.bind(this);
+      this.moveCheckedTask = this.moveCheckedTask.bind(this);
     }
 
     getUserInput(){
@@ -29,17 +30,17 @@ class ListContainer extends React.Component{
       if (!userInput){
         return alert('the input field is empty')
       }
-      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask} onChange={this.checkTask} isChecked={this.state.isChecked}/>)
+      this.state.itemArray.push(<ListItem key={userInput} userInput={userInput} removeTask={this.removeTask} onChange={this.checkTask}/>)
       // console.log(this.state.itemArray)
       this.setState({})
-      document.getElementById('text-input').value = " ";
+      document.getElementById('text-input').value = "";
     }
     
     removeTask(event){
       let buttonkey = event.target.getAttribute('buttonkey');
       let array = this.state.itemArray
       let newArray = array.filter(element => {
-        console.log('index element ' + array.indexOf(element))
+        // console.log('index element ' + array.indexOf(element))
         return element.key !== buttonkey
       })
 
@@ -49,9 +50,21 @@ class ListContainer extends React.Component{
     }
 
     checkTask(){
+      if(this.state.isChecked === false){
       this.setState({
         isChecked:true
       })
+        this.moveCheckedTask()
+      }else if (this.state.isChecked ===true){
+        this.setState({
+          isChecked : false
+        })
+        console.log('faaaalse')
+      }
+    }
+
+    moveCheckedTask(){
+       console.log('c est movechecked')
     }
  
     render(){
