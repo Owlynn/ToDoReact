@@ -6,15 +6,14 @@
     color: #3A4454;
   }
   
-  
-  
   input[type=checkbox]{
     width: 25px;
     border-radius: 10%;
     margin-right: 5%;
     accent-color: #6B4E71;
   }
-  input[type=checkbox]:checked ~ input{
+
+  input[type=checkbox]:checked + label{
       text-decoration: line-through;
   }
   
