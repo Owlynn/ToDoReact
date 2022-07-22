@@ -16,8 +16,8 @@ class ListContainer extends React.Component{
       this.pushInArray = this.pushInArray.bind(this);
       this.renderItem = this.renderItem.bind(this);
       // this.removeTask = this.removeTask.bind(this);
-      // this.checkTask = this.checkTask.bind(this);
-      // this.moveCheckedTask = this.moveCheckedTask.bind(this);
+      this.checkTask = this.checkTask.bind(this);
+      this.sortArray = this.sortArray.bind(this);
     }
 
     getUserInput(){
@@ -26,61 +26,48 @@ class ListContainer extends React.Component{
       return userInput;
     }
 
+    sortArray(itemArray){
+      return itemArray.sort((a, b) => a.isChecked < b.isChecked ? -1 : 1);
+    }
     
     pushInArray(){
       let userInput = this.getUserInput();
       if (!userInput){
         return alert('the input field is empty')
       }
-
       let workingArray = this.state.itemArray;
-      workingArray.push({
+        workingArray.push({
         id : uuidv4(),
         isChecked : false,
         label : userInput
       })
 
       // console.log('log du itemarray ' + this.state.itemArray)
-      this.setState({ itemArray:workingArray })
+      this.setState({ itemArray: workingArray })
       document.getElementById('text-input').value = "";
     }
 
-    renderItem(e){
-        // console.log(e + ' ' +index + ' ' + e.label)
-        return <ListItem id = {e.id} label ={e.label} isChecked= {e.isChecked}/>
+    
+    checkTask(currentId){
+      let workingArray = this.state.itemArray
+      workingArray.forEach( element => {
+        if(element.id === currentId) {
+          element.isChecked = !element.isChecked;
+        }
+        console.log('coucou')
+      }
+      
+      
+      )
+      this.setState({
+        itemArray : this.sortArray(workingArray)
+      })
     }
     
-    // removeTask(event){
-    //   let buttonkey = event.target.getAttribute('buttonkey');
-    //   let array = this.state.itemArray
-    //   let newArray = array.filter(element => {
-    //     // console.log('index element ' + array.indexOf(element))
-    //     return element.key !== buttonkey
-    //   })
-
-    //   this.setState({
-    //     itemArray: newArray
-    //   })
-    // }
-
-    // checkTask(){
-    //   if(this.state.isChecked === false){
-    //   this.setState({
-    //     isChecked:true
-    //   })
-    //     this.moveCheckedTask()
-    //   }else if (this.state.isChecked ===true){
-    //     this.setState({
-    //       isChecked : false
-    //     })
-    //     console.log('faaaalse')
-    //   }
-    // }
-
-    // moveCheckedTask(){
-    //    console.log('c est movechecked')
-    // }
- 
+    renderItem(e){
+        // console.log(e + ' ' +index + ' ' + e.label)
+        return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} />
+    }
     render(){
         return (
             <div className='list-container'>
@@ -96,7 +83,7 @@ class ListContainer extends React.Component{
             {
               this.state.itemArray.map(
                 (e,index) => {
-                  console.log (e + ' ' + index)
+                  // console.log (e + ' ' + index)
                   return this.renderItem(e)
                 }
               )
