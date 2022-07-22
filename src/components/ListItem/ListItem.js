@@ -18,7 +18,7 @@ class ListItem extends React.Component {
             <div className = "list-items" id={this.props.id}>
                 <input type="checkbox" name="item" defaultChecked={this.props.isChecked} onChange = {() => this.props.checkTask(this.props.id)} />
                 <label htmlFor = {this.props.id} > {this.props.label}</label>
-                <button className='delete-item'>X</button>
+                <button className='delete-item' onClick={this.props.removeTask} buttonid ={this.props.id}>X</button>
             </div>
         )
     }

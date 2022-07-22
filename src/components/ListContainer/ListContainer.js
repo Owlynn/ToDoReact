@@ -15,7 +15,7 @@ class ListContainer extends React.Component{
       this.getUserInput = this.getUserInput.bind(this);
       this.pushInArray = this.pushInArray.bind(this);
       this.renderItem = this.renderItem.bind(this);
-      // this.removeTask = this.removeTask.bind(this);
+      this.removeTask = this.removeTask.bind(this);
       this.checkTask = this.checkTask.bind(this);
       this.sortArray = this.sortArray.bind(this);
     }
@@ -42,7 +42,6 @@ class ListContainer extends React.Component{
         label : userInput
       })
 
-      // console.log('log du itemarray ' + this.state.itemArray)
       this.setState({ itemArray: workingArray })
       document.getElementById('text-input').value = "";
     }
@@ -54,20 +53,29 @@ class ListContainer extends React.Component{
         if(element.id === currentId) {
           element.isChecked = !element.isChecked;
         }
-        console.log('coucou')
-      }
+      })
       
-      
-      )
       this.setState({
         itemArray : this.sortArray(workingArray)
       })
     }
     
-    renderItem(e){
-        // console.log(e + ' ' +index + ' ' + e.label)
-        return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} />
+    removeTask(event){
+      let itemArray = this.state.itemArray
+      console.log('removing')
+      let buttonid = event.target.getAttribute('buttonid');
+      let workingArray = itemArray.filter(element => {
+        return element.id !== buttonid
+      })
+
+      this.setState({itemArray : workingArray})
     }
+    
+    renderItem(e){
+        return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} removeTask ={this.removeTask} />
+    }
+
+
     render(){
         return (
             <div className='list-container'>
