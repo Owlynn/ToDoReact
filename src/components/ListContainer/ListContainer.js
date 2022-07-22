@@ -90,8 +90,7 @@ class ListContainer extends React.Component{
                           
             {
               this.state.itemArray.map(
-                (e,index) => {
-                  // console.log (e + ' ' + index)
+                (e) => {
                   return this.renderItem(e)
                 }
               )
