@@ -15,10 +15,10 @@ class ListItem extends React.Component {
 
     render(){
         return (
-            <div className = "list-items" id={String(this.props.userInput)} key={this.props.userInput}>
-                <input type="checkbox" name="item" defaultChecked={false} onChange= {this.props.onChange} />
-                <label htmlFor = {String(this.props.userInput)}> {this.props.userInput}</label>
-                <button className='delete-item' onClick = {this.props.removeTask} buttonkey ={this.props.userInput}>X</button>
+            <div className = "list-items" id={this.props.id}>
+                <input type="checkbox" name="item" isChecked={this.props.isChecked}/>
+                <label htmlFor = {this.props.id} > {this.props.label}</label>
+                <button className='delete-item'>X</button>
             </div>
         )
     }
