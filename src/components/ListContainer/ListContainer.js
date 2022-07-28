@@ -24,7 +24,7 @@ class ListContainer extends React.Component{
       return itemArray.sort((a, b) => a.isChecked < b.isChecked ? -1 : 1);
     }
 
-    pushInArray(){
+    pushInArray(event){
       if (!this.state.userInput){
         return alert('the input field is empty')
       }
@@ -37,6 +37,7 @@ class ListContainer extends React.Component{
 
       this.setState({ itemArray: workingArray })
       document.getElementById('text-input').value = "";
+      event.preventDefault()
     }
 
 
@@ -73,14 +74,11 @@ class ListContainer extends React.Component{
     render(){
         return (
             <div className='list-container'>
-               <div>
-                  <div className = "item-input">
+                  <form className = "item-input">
                       <input type="text" id="text-input" name="text-input" placeholder='Add a new task' value={this.state.userInput} onChange={this.handleUserInputChange}/>
-                      <button className="add-task" onClick={this.pushInArray}>Add Task</button>
-                  </div>
-                </div>
+                      <input type='submit' className="add-task" onClick={this.pushInArray}/>
+                  </form>
 
-            <fieldset>
 
             {
               this.state.itemArray.map(
@@ -90,8 +88,7 @@ class ListContainer extends React.Component{
               )
             }
 
-            </fieldset>
-        </div>
+            </div>
         )
     }
 }
