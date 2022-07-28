@@ -41,13 +41,18 @@
     min-width: 2em;
     min-height: 2em;
   }
-  .add-task{
+  
+  .add-task, .clear{
     line-height: 1.8em;
     background-color: #6B4E71;
     color:#f3ebec;
     font-size : 1.2em;
     border-radius: 0% 10% 10% 0%;
     width: 25%;
+  }
+
+  .clear {
+    border-radius: 10%;
   }
 
   ::placeholder{

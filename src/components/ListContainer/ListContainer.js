@@ -94,7 +94,7 @@ class ListContainer extends React.Component{
               )
             }
 
-            <button onClick = {()=> this.clearCheckedTasks()}>Clear all</button>
+            <button className = 'clear' onClick = {()=> this.clearCheckedTasks()}>Clear all</button>
 
             </div>
         )
