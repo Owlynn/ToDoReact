@@ -36,8 +36,8 @@ class ListContainer extends React.Component{
       })
 
       this.setState({ itemArray: workingArray })
-      document.getElementById('text-input').value = "";
       event.preventDefault()
+      this.setState({userInput:''})
     }
 
 
