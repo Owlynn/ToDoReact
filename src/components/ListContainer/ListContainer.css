@@ -37,6 +37,10 @@
     border-radius: 10% 0% 0% 10%;
   }
 
+  input.checkbox {
+    min-width: 2em;
+    min-height: 2em;
+  }
   .add-task{
     line-height: 1.8em;
     background-color: #6B4E71;
