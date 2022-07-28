@@ -41,7 +41,10 @@ class ListContainer extends React.Component{
     }
 
     clearCheckedTasks(){
-      console.log('coucou')
+      console.log('clearing')
+      let workingArray = this.state.itemArray
+      let filteredArray = workingArray.filter(item => !item.isChecked )
+      this.setState({itemArray:filteredArray})
     }
     
     checkTask(currentId){
@@ -91,7 +94,7 @@ class ListContainer extends React.Component{
               )
             }
 
-            <button onClick = {this.clearCheckedTasks}>Clear all</button>
+            <button onClick = {()=> this.clearCheckedTasks()}>Clear all</button>
 
             </div>
         )
