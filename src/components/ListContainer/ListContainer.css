@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color:#C2B2B4;
-    width: 30vw;
+    max-width: 30vw;
     height: 60vh;
     margin-top: 2%;
     padding: 3%;
