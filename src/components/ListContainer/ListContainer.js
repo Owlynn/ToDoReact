@@ -40,7 +40,10 @@ class ListContainer extends React.Component{
       this.setState({userInput:''})
     }
 
-
+    clearCheckedTasks(){
+      console.log('coucou')
+    }
+    
     checkTask(currentId){
       let workingArray = this.state.itemArray
       workingArray.forEach( element => {
@@ -87,6 +90,8 @@ class ListContainer extends React.Component{
                 }
               )
             }
+
+            <button onClick = {this.clearCheckedTasks}>Clear all</button>
 
             </div>
         )
