@@ -4,14 +4,15 @@ import ListItem from "../ListItem/ListItem";
 import { v4 as uuidv4 } from 'uuid';
 
 class ListContainer extends React.Component{
-    constructor(props){
-      super(props);
+  constructor(props){
+    super(props);
 
-      this.state = {
+    this.state = {
         itemArray : [],
         userInput : "",
+        clearButton : 'hidden'
       }
-
+      
       this.pushInArray = this.pushInArray.bind(this);
       this.renderItem = this.renderItem.bind(this);
       this.removeTask = this.removeTask.bind(this);
@@ -19,27 +20,27 @@ class ListContainer extends React.Component{
       this.sortArray = this.sortArray.bind(this);
       this.handleUserInputChange = this.handleUserInputChange.bind(this);
     }
-
+    
     sortArray(itemArray){
       return itemArray.sort((a, b) => a.isChecked < b.isChecked ? -1 : 1);
     }
-
+    
     pushInArray(event){
       if (!this.state.userInput){
         return alert('the input field is empty')
       }
       let workingArray = this.state.itemArray;
-        workingArray.push({
+      workingArray.push({
         id : uuidv4(),
         isChecked : false,
         label : this.state.userInput
       })
-
+      
       this.setState({ itemArray: workingArray })
       event.preventDefault()
       this.setState({userInput:''})
     }
-
+    
     clearCheckedTasks(){
       console.log('clearing')
       let workingArray = this.state.itemArray
@@ -54,32 +55,38 @@ class ListContainer extends React.Component{
           element.isChecked = !element.isChecked;
         }
       })
-
+      
       this.setState({
         itemArray : this.sortArray(workingArray)
       })
     }
-
+    
     removeTask(buttonid){
       let itemArray = this.state.itemArray
       let workingArray = itemArray.filter(element => {
         return element.id !== buttonid;
       });
-
+      
       this.setState({itemArray : workingArray})
     }
-
+    
     renderItem(e){
-        return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} removeTask ={this.removeTask} />
+      
+      // if (!this.state.itemArray.length > 2) {
+      //   this.setState({clearButton : 'clear'})
+      // };
+      return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} removeTask ={this.removeTask} />
+      
     }
-
+    
     handleUserInputChange(e) {
-      this.setState({ userInput: e.target.value });
+      this.setState({ userInput: e.target.value, clearButton : 'clear'});
+      
     }
-
+    
     render(){
-        return (
-            <div className='list-container'>
+      return (
+        <div className='list-container'>
                   <form className = "item-input">
                       <input type="text" id="text-input" name="text-input" placeholder='Add a new task' value={this.state.userInput} onChange={this.handleUserInputChange}/>
                       <input type='submit' className="add-task" onClick={this.pushInArray}/>
@@ -94,7 +101,7 @@ class ListContainer extends React.Component{
               )
             }
 
-            <button className = 'clear' onClick = {()=> this.clearCheckedTasks()}>Clear all</button>
+            <button className = {this.state.clearButton} onClick = {()=> this.clearCheckedTasks()}>Clear all</button>
 
             </div>
         )
