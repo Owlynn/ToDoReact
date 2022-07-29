@@ -14,7 +14,7 @@ class ListContainer extends React.Component{
     this.state = {
         itemArray : [],
         userInput : "",
-        clearButton : 'hidden'
+        clearButtonIsDisplayed : false
       }
       
       this.pushInArray = this.pushInArray.bind(this);
@@ -23,6 +23,7 @@ class ListContainer extends React.Component{
       this.checkTask = this.checkTask.bind(this);
       this.sortArray = this.sortArray.bind(this);
       this.clearCheckedTasks = this.clearCheckedTasks.bind(this);
+      this.displayClearButton = this.displayClearButton.bind(this);
       this.handleUserInputChange = this.handleUserInputChange.bind(this);
     }
     
@@ -64,18 +65,19 @@ class ListContainer extends React.Component{
        })      
        
        
-       if (workingArray.some(element => element.isChecked)){
+       if (workingArray.some(element => element.isChecked)) {
         this.setState({
-          clearButton : 'clear'
+          clearButtonIsDisplayed : true
         })
-       }
+      }else{
+          this.setState({
+            clearButtonIsDisplayed : false
+          })
+      }
 
-
-      this.setState({
+       this.setState({
         itemArray : this.sortArray(workingArray)
       })
-
-      
     }
     
     removeTask(buttonid){
@@ -95,6 +97,11 @@ class ListContainer extends React.Component{
       this.setState({ userInput: e.target.value});
     }
     
+    displayClearButton (){
+      if (this.state.clearButtonIsDisplayed){
+        return <button onClick = {this.clearCheckedTasks}>Clear all checked task</button>
+    }
+  }
     render(){
       return (
         <div className='list-container'>
@@ -104,18 +111,16 @@ class ListContainer extends React.Component{
                       <input type='submit' className="add-task" onClick={this.pushInArray}/>
                   </form>
 
-
             {
               this.state.itemArray.map(
                 (e) => {
                   return this.renderItem(e)
-                }
-              )
+              })
             }
 
-            <button className = {this.state.clearButton} onClick = {this.clearCheckedTasks}>Clear all checked task</button>
+            {this.displayClearButton()}
 
-            </div>
+        </div>
         )
     }
 }
