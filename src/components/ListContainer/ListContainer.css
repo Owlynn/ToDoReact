@@ -53,8 +53,12 @@
 
   .clear {
     border-radius: 10%;
+    min-width: 400px;
   }
-
+  
+  .hidden {
+    display:none;
+  }
   ::placeholder{
     font-size: 1.8em;
     height: 1.8em;
@@ -65,6 +69,4 @@
     margin-top: 5%;
   }
 
-  .hidden {
-    display:none;
-  }
+ 
