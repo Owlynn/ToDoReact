@@ -54,6 +54,11 @@ class ListContainer extends React.Component{
       let workingArray = this.state.itemArray
       let filteredArray = workingArray.filter(item => !item.isChecked )
       this.setState({itemArray:filteredArray})
+      if(filteredArray.every(element => !element.isChecked)){
+        this.setState(
+          {clearButtonIsDisplayed: false}
+        )
+      }
     }
     
     checkTask(currentId){
@@ -64,17 +69,11 @@ class ListContainer extends React.Component{
           }
        })      
        
+       if (this.state.itemArray.some(element => element.isChecked)) {
+       this.setState({
+         clearButtonIsDisplayed : true})
+       }
        
-       if (workingArray.some(element => element.isChecked)) {
-        this.setState({
-          clearButtonIsDisplayed : true
-        })
-      }else{
-          this.setState({
-            clearButtonIsDisplayed : false
-          })
-      }
-
        this.setState({
         itemArray : this.sortArray(workingArray)
       })
@@ -98,12 +97,13 @@ class ListContainer extends React.Component{
     }
     
     displayClearButton (){
+      
       if (this.state.clearButtonIsDisplayed){
         return <button onClick = {this.clearCheckedTasks}>Clear all checked task</button>
-      }else{
-        return ""
       }
-    }
+    
+  }      
+
     render(){
       return (
         <div className='list-container'>
