@@ -100,6 +100,8 @@ class ListContainer extends React.Component{
     displayClearButton (){
       if (this.state.clearButtonIsDisplayed){
         return <button onClick = {this.clearCheckedTasks}>Clear all checked task</button>
+      }else{
+        return ""
       }
     }
     render(){
