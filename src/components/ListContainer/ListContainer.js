@@ -54,6 +54,7 @@ class ListContainer extends React.Component{
       let workingArray = this.state.itemArray
       let filteredArray = workingArray.filter(item => !item.isChecked )
       this.setState({itemArray:filteredArray})
+      
       if(filteredArray.every(element => !element.isChecked)){
         this.setState(
           {clearButtonIsDisplayed: false}
@@ -86,6 +87,15 @@ class ListContainer extends React.Component{
       });
       
       this.setState({itemArray : workingArray})
+      console.log('tableau ' + this.state.itemArray)
+      console.log('LENGTH ' + this.state.itemArray.length)
+      
+      if(this.state.itemArray.length === 1){
+        console.log ("égal 1")
+        this.setState({
+          clearButtonIsDisplayed:false
+        })
+      }
     }
     
     renderItem(e){
