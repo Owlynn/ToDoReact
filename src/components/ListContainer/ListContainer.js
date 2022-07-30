@@ -25,6 +25,7 @@ class ListContainer extends React.Component{
       this.clearCheckedTasks = this.clearCheckedTasks.bind(this);
       this.displayClearButton = this.displayClearButton.bind(this);
       this.handleUserInputChange = this.handleUserInputChange.bind(this);
+      this.countItems = this.countItems.bind(this);
     }
     
     sortArray(itemArray){
@@ -47,10 +48,10 @@ class ListContainer extends React.Component{
       this.setState({ itemArray: workingArray })
       event.preventDefault()
       this.setState({userInput:''})
+
     }
     
     clearCheckedTasks(){
-      console.log('clearing')
       let workingArray = this.state.itemArray
       let filteredArray = workingArray.filter(item => !item.isChecked )
       this.setState({itemArray:filteredArray})
@@ -68,14 +69,17 @@ class ListContainer extends React.Component{
           if(element.id === currentId) {
             element.isChecked = !element.isChecked;
           }
-       })      
+       }) 
        
-       if (this.state.itemArray.some(element => element.isChecked)) {
+      if (this.state.itemArray.some(element => element.isChecked)) {
        this.setState({
          clearButtonIsDisplayed : true})
-       }
-       
-       this.setState({
+      }else{
+         this.setState({
+           clearButtonIsDisplayed : false})
+      };
+
+      this.setState({
         itemArray : this.sortArray(workingArray)
       })
     }
@@ -87,11 +91,9 @@ class ListContainer extends React.Component{
       });
       
       this.setState({itemArray : workingArray})
-      console.log('tableau ' + this.state.itemArray)
-      console.log('LENGTH ' + this.state.itemArray.length)
       
       if(this.state.itemArray.length === 1){
-        console.log ("égal 1")
+        console.log('égal 1')
         this.setState({
           clearButtonIsDisplayed:false
         })
@@ -99,7 +101,9 @@ class ListContainer extends React.Component{
     }
     
     renderItem(e){
-      return <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} removeTask ={this.removeTask} />
+      return (
+        <ListItem key= {e.id} id ={e.id} label ={e.label} isChecked= {e.isChecked} checkTask = {this.checkTask} removeTask ={this.removeTask} />
+      )
     }
     
     handleUserInputChange(e) {
@@ -107,12 +111,19 @@ class ListContainer extends React.Component{
     }
     
     displayClearButton (){
-      
       if (this.state.clearButtonIsDisplayed){
-        return <button onClick = {this.clearCheckedTasks}>Clear all checked task</button>
+        return <button className = "clear" onClick = {this.clearCheckedTasks}>Clear all checked task</button>
       }
+    }
     
-  }      
+    countItems(){
+      console.log("length " + this.state.itemArray.length)
+        return (
+        <div>
+          <p className="taskCounter">Nombre de tâches à effectuer : {this.state.itemArray.length}</p>
+       </div>
+       )
+        }
 
     render(){
       return (
@@ -123,18 +134,17 @@ class ListContainer extends React.Component{
                       <input type='submit' className="add-task" onClick={this.pushInArray}/>
                   </form>
 
-            {
-              this.state.itemArray.map(
-                (e) => {
-                  return this.renderItem(e)
+          {this.displayClearButton()}
+          {this.state.itemArray.map(
+              (e) => {
+                return this.renderItem(e)
               })
-            }
-
-            {this.displayClearButton()}
-
+          }
+          
+          {this.countItems()}
         </div>
-        )
+      )
     }
-}
-
+  }
+  
 export default ListContainer;
